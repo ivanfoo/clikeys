@@ -7,5 +7,6 @@ import (
 
 func main() {
     fmt.Println("Hiya")
+    keys.GenRSAKey(2048)
 }
 
