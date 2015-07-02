@@ -2,11 +2,11 @@ package main
 
 import (
     "fmt"
-    "github.com/ivanfoo/go-keys"
+    "github.com/ivanfoo/urkel"
 )
 
 func main() {
-    fmt.Println("Hiya")
-    keys.GenRSAKey(2048)
+    fmt.Println("Running...")
+    urkel.GenKeyToFile(2048, "my_key")  
 }
 
