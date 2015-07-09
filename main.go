@@ -1,22 +1,31 @@
 package main
 
 import (
+    "fmt"
     "github.com/ivanfoo/urkel"
 )
 
-type Key struct {
-    length int
+const KeysStorage string = "keys/"
+
+type KeysPair struct {
+    length  int
     private string
-    public string
-    outFile string
+    public  string
+    priFile string
+    pubFile string
 }
 
 func main() {
-    key := new(Key) 
-    key.length = AskUserForInt("Key length: ")
-    key.outFile = AskUserForString("Output file: ")
-    key.private, key.public = urkel.GenPemRSA(key.length)
-    WriteStrToFile(key.private, key.outFile)
+    keysPair := new(KeysPair)
+
+    keysPair.length = AskUserForInt("Key length: ")
+    keysPair.priFile = AskUserForString("Output file for private key: ")
+    keysPair.pubFile = AskUserForString("Output file for public key: ")
+
+    fmt.Print("Generating keys...")
+    keysPair.private, keysPair.public = urkel.GenPemRSA(keysPair.length)
+    fmt.Println("Done!")
+
+    WriteStrToFile(keysPair.private, KeysStorage+keysPair.priFile)
+    WriteStrToFile(keysPair.public, KeysStorage+keysPair.pubFile)
 }
-
-
