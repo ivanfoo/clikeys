@@ -1,23 +1,23 @@
 package main
 
 import (
-    "io"
-    "os"
-    "log"
+	"io"
+	"log"
+	"os"
 )
 
 func WriteStrToFile(str string, fileName string) {
-    file, err := os.OpenFile(fileName, os.O_CREATE|os.O_WRONLY,0644)
-   
-    if err != nil {
-        log.Fatal(err)
-    }
+	file, err := os.OpenFile(fileName, os.O_CREATE|os.O_WRONLY, 0644)
 
-    _, err = io.WriteString(file, str)
+	if err != nil {
+		log.Fatal(err)
+	}
 
-    if err != nil {
-        log.Fatal(err)
-    }
+	_, err = io.WriteString(file, str)
 
-    file.Close()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	file.Close()
 }
